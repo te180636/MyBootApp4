@@ -1,13 +1,28 @@
 package jp.te4a.spring.boot.myapp4;
 
+import static org.junit.Assert.assertEquals;
+
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
+import org.mockito.InjectMocks;
+import org.mockito.MockitoAnnotations;
 
-@SpringBootTest
-class ApplicationTests {
+public class HelloControllerTest
+{
+    @InjectMocks
+    HelloController helloController;
 
-	@Test
-	void contextLoads() {
-	}
+    @BeforeEach
+    public void each(){
+        MockitoAnnotations.openMocks(this);
+    }
 
+    @Test
+    public void shouldAnswerWithTrue()
+    {
+        String expected = "this is Spring Boot sample";
+        String actual = helloController.index();
+        assertEquals(expected,actual);
+    }
 }
